@@ -1,4 +1,4 @@
-import 'package:expenses/layers/presentation/widgets/expenses_list_widget.dart';
+import 'package:expenses/layers/presentation/widgets/expenses_list/expenses_list_widget.dart';
 import 'package:expenses/mock_data.dart';
 import 'package:flutter/material.dart';
 
