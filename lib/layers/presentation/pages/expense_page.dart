@@ -1,3 +1,5 @@
+import 'package:expenses/layers/presentation/widgets/expenses_list_widget.dart';
+import 'package:expenses/mock_data.dart';
 import 'package:flutter/material.dart';
 
 class ExpensePage extends StatefulWidget {
@@ -10,11 +12,13 @@ class ExpensePage extends StatefulWidget {
 class _ExpensePageState extends State<ExpensePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          Text('The chart'),
-          Text('Expenses list...'),
+          const Text('The chart'),
+          Expanded(
+            child: ExpensesListWidget(expenses: expensesMock),
+          ),
         ],
       ),
     );
