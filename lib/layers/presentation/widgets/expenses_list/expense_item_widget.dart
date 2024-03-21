@@ -1,4 +1,4 @@
-import 'package:expenses/layers/domain/entitties/expense_entity.dart';
+import 'package:expenses/layers/domain/entities/expense_entity.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseItemWidget extends StatelessWidget {
