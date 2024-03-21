@@ -1,4 +1,5 @@
 import 'package:expenses/layers/presentation/widgets/expenses_list/expenses_list_widget.dart';
+import 'package:expenses/layers/presentation/widgets/new_expense/new_expense_widget.dart';
 import 'package:expenses/mock_data.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class _ExpensePageState extends State<ExpensePage> {
       context: context,
       builder: (ctx) {
         return const Scaffold(
-          body: Column(),
+          body: NewExpenseWidget(),
         );
       },
     );

@@ -5,12 +5,12 @@ List<ExpenseEntity> expensesMock = [
     title: "Flutter Curse",
     amount: 19.99,
     date: DateTime.now(),
-    category: Category.work,
+    category: CategoryEnum.work,
   ),
   ExpenseEntity(
     title: "Cinema",
     amount: 15.69,
     date: DateTime.now(),
-    category: Category.leisure,
+    category: CategoryEnum.leisure,
   ),
 ];
