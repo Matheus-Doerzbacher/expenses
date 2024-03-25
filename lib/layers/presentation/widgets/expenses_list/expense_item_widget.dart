@@ -14,8 +14,15 @@ class ExpenseItemWidget extends StatelessWidget {
           vertical: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expense.title),
+            Text(
+              expense.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: 14),
+            ),
             const SizedBox(height: 4),
             Row(
               children: [

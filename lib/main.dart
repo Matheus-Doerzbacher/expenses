@@ -10,26 +10,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var kColorScheme = ColorScheme.fromSeed(
+      seedColor: const Color.fromARGB(255, 96, 59, 181),
+      // seedColor: Colors.deepOrange,
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        iconTheme: IconThemeData(
-          color: Theme.of(context).primaryColor,
-        ),
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          backgroundColor: Theme.of(context).primaryColor,
-          iconTheme: const IconThemeData(
-            color: Colors.white,
-          ),
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-          ),
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+      ).copyWith(
+        iconTheme: IconThemeData(
+          color: kColorScheme.primary,
+        ),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.primary,
+          foregroundColor: kColorScheme.primaryContainer,
+          centerTitle: false,
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: kColorScheme.background,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: kColorScheme.primaryContainer),
+        ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 18,
+              ),
+            ),
+        colorScheme: kColorScheme,
       ),
       home: const ExpensePage(),
     );
