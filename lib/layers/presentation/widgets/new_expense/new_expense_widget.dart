@@ -1,10 +1,10 @@
 import 'package:expenses/layers/domain/entities/expense_entity.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NewExpenseWidget extends StatefulWidget {
-  const NewExpenseWidget({super.key});
+  final void Function(ExpenseEntity expense) onAddExpense;
+  const NewExpenseWidget({super.key, required this.onAddExpense});
 
   @override
   State<NewExpenseWidget> createState() => _NewExpenseWidgetState();
@@ -28,6 +28,55 @@ class _NewExpenseWidgetState extends State<NewExpenseWidget> {
     setState(() {
       _selectedDate = pickedDate;
     });
+  }
+
+  void _submitExpenseData() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = enteredAmount == null || enteredAmount < 0;
+
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            title: const Text(
+              "Entrada Inválida",
+              textAlign: TextAlign.center,
+            ),
+            content: const Text(
+              "Por favor, verifique se os campos, Titulo, Valor, Data e Cátegoria estão completados",
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                    },
+                    child: const Text("Voltar"),
+                  )
+                ],
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    final newExpense = ExpenseEntity(
+      title: _titleController.text,
+      amount: enteredAmount,
+      date: _selectedDate!,
+      category: _selectCategory,
+    );
+
+    widget.onAddExpense(newExpense);
+    Navigator.pop(context);
   }
 
   @override
@@ -124,10 +173,7 @@ class _NewExpenseWidgetState extends State<NewExpenseWidget> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (kDebugMode) {
-                    print(_titleController.text);
-                    print(_amountController.text);
-                  }
+                  _submitExpenseData();
                   _titleController.clear();
                 },
                 child: const Text('Salvar Tarefa'),
