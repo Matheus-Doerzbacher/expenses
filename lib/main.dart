@@ -15,12 +15,44 @@ class MyApp extends StatelessWidget {
       // seedColor: Colors.deepOrange,
     );
 
+    var kDarkColorScheme = ColorScheme.fromSeed(
+      brightness: Brightness.dark,
+      seedColor: const Color.fromARGB(255, 5, 99, 125),
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-      ).copyWith(
+      darkTheme: ThemeData.dark().copyWith(
+        iconTheme: IconThemeData(
+          color: kDarkColorScheme.primary,
+        ),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kDarkColorScheme.primary,
+          foregroundColor: kDarkColorScheme.primaryContainer,
+          centerTitle: false,
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.background,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kDarkColorScheme.onSecondaryContainer,
+                fontSize: 18,
+              ),
+              bodyMedium: const TextStyle(color: Colors.white),
+            ),
+        colorScheme: kDarkColorScheme,
+      ),
+      theme: ThemeData(useMaterial3: true).copyWith(
         iconTheme: IconThemeData(
           color: kColorScheme.primary,
         ),
@@ -46,6 +78,7 @@ class MyApp extends StatelessWidget {
             ),
         colorScheme: kColorScheme,
       ),
+      themeMode: ThemeMode.system,
       home: const ExpensePage(),
     );
   }
