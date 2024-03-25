@@ -1,4 +1,5 @@
 import 'package:expenses/layers/domain/entities/expense_entity.dart';
+import 'package:expenses/layers/presentation/widgets/chart/chart_widget.dart';
 import 'package:expenses/layers/presentation/widgets/expenses_list/expenses_list_widget.dart';
 import 'package:expenses/layers/presentation/widgets/new_expense/new_expense_widget.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +96,7 @@ class _ExpensePageState extends State<ExpensePage> {
       ),
       body: Column(
         children: [
+          ChartWidget(expenses: expensesMock),
           // Toolbar with the Add button => ROW()
           Expanded(
             child: mainContent,
