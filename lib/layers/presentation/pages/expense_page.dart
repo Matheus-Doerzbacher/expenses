@@ -52,6 +52,21 @@ class _ExpensePageState extends State<ExpensePage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text(
+        "Nenhuma despesa encontrada, comece a adicionar algumas!",
+        style: TextStyle(),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    if (expensesMock.isNotEmpty) {
+      mainContent = ExpensesListWidget(
+        expenses: expensesMock,
+        onRemoveExpense: _removeExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('The chart'),
@@ -66,11 +81,8 @@ class _ExpensePageState extends State<ExpensePage> {
         children: [
           // Toolbar with the Add button => ROW()
           Expanded(
-            child: ExpensesListWidget(
-              expenses: expensesMock,
-              onRemoveExpense: _removeExpense,
-            ),
-          ),
+            child: mainContent,
+          )
         ],
       ),
     );
