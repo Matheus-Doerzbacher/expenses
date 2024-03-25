@@ -44,6 +44,12 @@ class _ExpensePageState extends State<ExpensePage> {
     });
   }
 
+  void _removeExpense(ExpenseEntity expens) {
+    setState(() {
+      expensesMock.remove(expens);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +66,10 @@ class _ExpensePageState extends State<ExpensePage> {
         children: [
           // Toolbar with the Add button => ROW()
           Expanded(
-            child: ExpensesListWidget(expenses: expensesMock),
+            child: ExpensesListWidget(
+              expenses: expensesMock,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       ),
