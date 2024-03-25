@@ -44,10 +44,26 @@ class _ExpensePageState extends State<ExpensePage> {
     });
   }
 
-  void _removeExpense(ExpenseEntity expens) {
+  void _removeExpense(ExpenseEntity expense) {
+    final expenseIndex = expensesMock.indexOf(expense);
     setState(() {
-      expensesMock.remove(expens);
+      expensesMock.remove(expense);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text("Despesa removida com sucesso!"),
+        action: SnackBarAction(
+          label: "Desfazer",
+          onPressed: () {
+            setState(() {
+              expensesMock.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
