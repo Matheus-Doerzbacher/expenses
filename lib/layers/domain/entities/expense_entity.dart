@@ -33,3 +33,27 @@ class ExpenseEntity {
     return formatter.format(date);
   }
 }
+
+class ExpenseBucketEntity {
+  final CategoryEnum category;
+  final List<ExpenseEntity> expenses;
+
+  ExpenseBucketEntity({
+    required this.category,
+    required this.expenses,
+  });
+
+  ExpenseBucketEntity.forCategory(
+      List<ExpenseEntity> allExpenses, this.category)
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
+
+  double get totalExpenses {
+    double sum = 0;
+    for (final expense in expenses) {
+      sum += expense.amount;
+    }
+    return sum;
+  }
+}
