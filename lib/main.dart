@@ -2,7 +2,13 @@ import 'package:expenses/layers/presentation/pages/expense_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  /* CÓDIGO PARA DEIXAR O APP APENAS NA VERTICAL */
+
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  //     .then((function) {
   runApp(const MyApp());
+  // });
 }
 
 class MyApp extends StatelessWidget {
